@@ -1,4 +1,3 @@
-from typing import Optional
 
 
 class Category:
@@ -10,7 +9,7 @@ class Category:
     category_count = 0
     product_count = 0
 
-    def __init__(self, name: str, description: str, products: Optional[list] = None):
+    def __init__(self, name: str, description: str, products: list):
         """Метод для инициализации экземпляра класса. Задаем значения атрибутам экземпляра."""
         self.name = name
         self.description = description
