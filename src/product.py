@@ -14,7 +14,6 @@ class Product:
         self.__price = price
         self.quantity = quantity
 
-
     @classmethod
     def new_product(cls, product_dict: dict):
         """Класс-метод для добавления нового продукта"""
@@ -28,7 +27,6 @@ class Product:
         cls.product_list.append(new_product_cls)
         return new_product_cls
 
-
     @property
     def price(self):
         return self.__price
@@ -37,7 +35,7 @@ class Product:
     def price(self, new_price: int):
         """Проверка и изменение цены"""
         if new_price <= 0:
-            print (f"Цена не должна быть нулевая или отрицательная, оставляем старую цену {self.__price}")
+            print(f"Цена не должна быть нулевая или отрицательная, оставляем старую цену {self.__price}")
         if self.__price > new_price > 0:
             user_input = input("Новая цена меньше. Согласны понизить цену? (y/n): ")
             if user_input.lower() == "y":

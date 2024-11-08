@@ -23,3 +23,21 @@ def test_category_counters(product):
     assert Category.product_count == products_counter_mem + 3
 
 
+def test_products_property(category):
+    """Корректная работа функции с выводом приватного списка"""
+    assert category.products == (
+        "Samsung Galaxy C23 Ultra, 180000.0руб. Остаток: 5 шт.\n" "Iphone 15, 210000.0руб. Остаток: 8 шт.\n"
+    )
+
+
+def test_add_product(category, product):
+    """Корректная работа функции по добавлению продукта"""
+    assert len(category.products_in_list) == 2
+    category.add_product(product)
+    assert len(category.products_in_list) == 3
+
+
+# def test_add_product_(category, product):
+#     assert Category.product_count == 2
+#     category.add_product(product)
+#     assert Category.product_count == 3

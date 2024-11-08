@@ -1,5 +1,3 @@
-
-
 class Category:
     """Класс для описания категории"""
 
@@ -19,7 +17,7 @@ class Category:
         Category.product_count += len(products) if products else 0
 
     @property
-    def products(self):
+    def products(self) -> str:
         product_str = ""
         for product in self.__products:
             product_str += f"{product.name}, {product.price}руб. Остаток: {product.quantity} шт.\n"
@@ -29,7 +27,6 @@ class Category:
         """Функция для добавления нового продукта"""
         self.__products.append(product)
         Category.product_count += 1
-
 
     @property
     def products_in_list(self):
