@@ -55,10 +55,10 @@ def test_create_objects_from_json(data, data_empty):
     rows = create_objects_from_json(data)
     assert rows[0].name == "Телевизоры"
     assert rows[0].description == "Современный телевизор"
-    assert len(rows[0].products) == 1
-    assert rows[0].products[0].name == "55 QLED 4K"
-    assert rows[0].products[0].description == "Фоновая подсветка"
-    assert rows[0].products[0].price == 123000.0
-    assert rows[0].products[0].quantity == 7
+    assert len(rows[0].products_in_list) == 1
+    assert rows[0].products_in_list[0].name == "55 QLED 4K"
+    assert rows[0].products_in_list[0].description == "Фоновая подсветка"
+    assert rows[0].products_in_list[0].price == 123000.0
+    assert rows[0].products_in_list[0].quantity == 7
     rows_empty = create_objects_from_json(data_empty)
     assert rows_empty == []
