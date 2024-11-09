@@ -26,7 +26,7 @@ def test_category_counters(product):
 def test_products_property(category):
     """Корректная работа функции с выводом приватного списка"""
     assert category.products == (
-        "Samsung Galaxy C23 Ultra, 180000.0руб. Остаток: 5 шт.\n" "Iphone 15, 210000.0руб. Остаток: 8 шт.\n"
+        "Samsung Galaxy C23 Ultra, 180000.0 руб. Остаток: 5 шт.\n" "Iphone 15, 210000.0 руб. Остаток: 8 шт.\n"
     )
 
 
