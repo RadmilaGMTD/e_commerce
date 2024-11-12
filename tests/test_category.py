@@ -39,4 +39,4 @@ def test_add_product(category, product):
 
 def test_str_category(category):
     """Корректная работа метода str"""
-    assert str(category) == "Смартфоны, количество продуктов: 2 шт.\n"
+    assert str(category) == "Смартфоны, количество продуктов: 13 шт.\n"

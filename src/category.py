@@ -18,7 +18,10 @@ class Category:
 
     def __str__(self) -> str:
         """Маг.метод для строкового отображения"""
-        return f"{self.name}, количество продуктов: {len(self.__products)} шт.\n"
+        summ_product = 0
+        for i in self.__products:
+            summ_product += i.quantity
+        return f"{self.name}, количество продуктов: {summ_product} шт.\n"
 
     @property
     def products(self) -> str:
