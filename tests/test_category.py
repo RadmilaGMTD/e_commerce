@@ -37,7 +37,6 @@ def test_add_product(category, product):
     assert len(category.products_in_list) == 3
 
 
-# def test_add_product_(category, product):
-#     assert Category.product_count == 2
-#     category.add_product(product)
-#     assert Category.product_count == 3
+def test_str_category(category):
+    """Корректная работа метода str"""
+    assert str(category) == "Смартфоны, количество продуктов: 13 шт.\n"
