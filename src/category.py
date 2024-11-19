@@ -1,3 +1,6 @@
+from src.product import Product
+
+
 class Category:
     """Класс для описания категории"""
 
@@ -32,8 +35,11 @@ class Category:
 
     def add_product(self, product: dict):
         """Функция для добавления нового продукта"""
-        self.__products.append(product)
-        Category.product_count += 1
+        if isinstance(product, Product):
+            self.__products.append(product)
+            Category.product_count += 1
+        else:
+            raise TypeError
 
     @property
     def products_in_list(self):

@@ -1,4 +1,5 @@
 from src.category import Category
+import pytest
 
 
 def test_category(category, category_empty):
@@ -40,3 +41,15 @@ def test_add_product(category, product):
 def test_str_category(category):
     """Корректная работа метода str"""
     assert str(category) == "Смартфоны, количество продуктов: 13 шт.\n"
+
+
+def test_add_product_error(category):
+    """Ошибка функции при добавлении продукта"""
+    with pytest.raises(TypeError):
+        category.add_product(1)
+
+
+def test_add_product_product(category, smartphone1):
+    """Добавляем продукт из класса - смартфоны"""
+    category.add_product(smartphone1)
+    assert category.products_in_list[-1].name == "Samsung Galaxy S23 Ultra"
