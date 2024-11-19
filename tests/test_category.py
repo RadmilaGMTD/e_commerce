@@ -1,5 +1,6 @@
-from src.category import Category
 import pytest
+
+from src.category import Category
 
 
 def test_category(category, category_empty):

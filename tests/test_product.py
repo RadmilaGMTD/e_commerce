@@ -1,5 +1,6 @@
-from src.product import Product
 import pytest
+
+from src.product import Product
 
 
 def test_product(product, category) -> None:
