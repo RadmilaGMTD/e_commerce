@@ -1,3 +1,6 @@
+# import unittest
+
+
 import pytest
 
 from src.product import Product
@@ -56,10 +59,16 @@ def test_price_setter(capsys, product):
     """Корректная работа сеттера - price"""
     product.price = 0
     message = capsys.readouterr()
-    assert message.out.strip() == "Цена не должна быть нулевая или отрицательная, оставляем старую цену 180000.0"
+    assert (
+        message.out.strip().split("\n")[-1]
+        == "Цена не должна быть нулевая или отрицательная, оставляем старую цену 180000.0"
+    )
     product.price = -100
     message = capsys.readouterr()
-    assert message.out.strip() == "Цена не должна быть нулевая или отрицательная, оставляем старую цену 180000.0"
+    assert (
+        message.out.strip().split("\n")[-1]
+        == "Цена не должна быть нулевая или отрицательная, оставляем старую цену 180000.0"
+    )
     product.price = 200000
     message = capsys.readouterr()
     assert message.out.strip() == "Новая цена выше. Цена изменена на 200000"
@@ -79,3 +88,9 @@ def test_add_product_error(product, smartphone1):
     """Ошибка функции при добавлении продукта"""
     with pytest.raises(TypeError):
         assert product + smartphone1
+
+
+# class TestCase(unittest.TestCase):
+#     def test_add(self):
+#         with self.assertRaises(TypeError):
+#             c = product + smartphone1

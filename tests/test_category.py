@@ -54,3 +54,13 @@ def test_add_product_product(category, smartphone1):
     """Добавляем продукт из класса - смартфоны"""
     category.add_product(smartphone1)
     assert category.products_in_list[-1].name == "Samsung Galaxy S23 Ultra"
+
+
+def test_category_total_price(category):
+    """Тестируем функцию, которая рассчитывает общую стоимость"""
+    assert category.total_price() == 2580000.0
+
+
+def test_category_get_quantity(category):
+    """Тестируем функцию, которая выводит количество продуктов"""
+    assert category.get_quantity() == 13
