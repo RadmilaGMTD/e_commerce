@@ -1,3 +1,5 @@
+import pytest
+
 from src.product import Product
 
 
@@ -71,3 +73,9 @@ def test_str_product(product):
 def test_add_products(product, product_2):
     """Корректная работа метода add"""
     assert product + product_2 == 1100000.0
+
+
+def test_add_product_error(product, smartphone1):
+    """Ошибка функции при добавлении продукта"""
+    with pytest.raises(TypeError):
+        assert product + smartphone1

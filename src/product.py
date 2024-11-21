@@ -20,8 +20,10 @@ class Product:
 
     def __add__(self, other):
         """Маг.метод для складывания продуктов"""
-        result = self.__price * self.quantity + other.price * other.quantity
-        return result
+        if type(other) is self.__class__:
+            result = self.__price * self.quantity + other.price * other.quantity
+            return result
+        raise TypeError
 
     @classmethod
     def new_product(cls, product_dict: dict):
