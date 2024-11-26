@@ -94,3 +94,9 @@ def test_add_product_error(product, smartphone1):
 #     def test_add(self):
 #         with self.assertRaises(TypeError):
 #             c = product + smartphone1
+
+
+def test_quantity_product_0():
+    """Ошибка при создании продукта с нулевым количеством"""
+    with pytest.raises(ValueError, match="Товар с нулевым количеством не может быть добавлен"):
+        assert Product("Iphone", "256GB, Серый цвет", 120000.0, 0)
