@@ -1,4 +1,7 @@
+# from itertools import product
+
 from src.base_product import BaseOrderCategory
+from src.exception import ZeroQuantity
 from src.product import Product
 
 
@@ -30,15 +33,24 @@ class Category(BaseOrderCategory):
     @property
     def products(self) -> str:
         product_str = ""
-        for product in self.__products:
-            product_str += f"{str(product)}\n"
+        for product_ in self.__products:
+            product_str += f"{str(product_)}\n"
         return product_str
 
-    def add_product(self, product: dict):
+    def add_product(self, product_: Product):
         """Функция для добавления нового продукта"""
-        if isinstance(product, Product):
-            self.__products.append(product)
-            Category.product_count += 1
+        if isinstance(product_, Product):
+            try:
+                if product_.quantity == 0:
+                    raise ZeroQuantity("Количество продукта не должно быть равно 0")
+            except ZeroQuantity as e:
+                print(str(e))
+            else:
+                self.__products.append(product_)
+                Category.product_count += 1
+                print("Продукт добавлен")
+            finally:
+                print("Операция выполнена")
         else:
             raise TypeError
 
@@ -49,13 +61,20 @@ class Category(BaseOrderCategory):
     def total_price(self):
         """Функция считает общую стоимость продуктов"""
         total_summ = 0
-        for product in self.__products:
-            total_summ += product.price * product.quantity
+        for product_ in self.__products:
+            total_summ += product_.price * product_.quantity
         return total_summ
 
     def get_quantity(self):
         """Функция выводит количество продуктов"""
-        return sum([product.quantity for product in self.__products])
+        return sum([product_.quantity for product_ in self.__products])
+
+    def middle_price(self):
+        """Функция находит среднюю цену продуктов"""
+        try:
+            return sum(product_.price for product_ in self.__products) / len(self.__products)
+        except ZeroDivisionError:
+            return 0
 
 
 # if __name__ == '__main__':
@@ -67,3 +86,17 @@ class Category(BaseOrderCategory):
 #                          [product1, product2])
 #     print(category1.total_price())
 #     print(category1.get_quantity())
+#     print(category1.middle_price())
+#     product3 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 1)
+#     category1.add_product(product3)
+#
+#     try:
+#         product4 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 0)
+#         category1.add_product(product4)
+#     except ValueError:
+#         try:
+#             raise ZeroQuantity ("Количество продукта не должно быть равно 0")
+#         except ZeroQuantity as e:
+#             print(str(e))
+#         finally:
+#             print("Операция выполнена")

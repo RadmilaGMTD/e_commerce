@@ -1,5 +1,6 @@
 # from src.product import Product
 from src.base_product import BaseOrderCategory
+from src.exception import ZeroQuantity
 
 
 class Order(BaseOrderCategory):
@@ -7,7 +8,16 @@ class Order(BaseOrderCategory):
 
     def __init__(self, product):
         """Метод для инициализации экземпляра класса. Задаем значения атрибутам экземпляра."""
-        self.product = product
+        try:
+            if product.quantity > 0:
+                self.product = product
+                print("Товар добавлен")
+            else:
+                raise ZeroQuantity("Количество товара не должно быть равно 0")
+        except ZeroQuantity as e:
+            print(str(e))
+        finally:
+            print("Операция выполнена")
 
     def __str__(self) -> str:
         """Маг.метод для строкового отображения"""
@@ -29,3 +39,12 @@ class Order(BaseOrderCategory):
 #     print(order1.total_price())
 #     print(Order(product2))
 #     print(order1.get_quantity())
+#     try:
+#         product3 = Product("Iphone 15", "512GB, Gray space", 210000.0, 0)
+#     except ValueError:
+#         try:
+#             raise ZeroQuantity ("Количество товара не должно быть равно 0")
+#         except ZeroQuantity as e:
+#             print(str(e))
+#         finally:
+#             print("Операция выполнена")

@@ -64,3 +64,18 @@ def test_category_total_price(category):
 def test_category_get_quantity(category):
     """Тестируем функцию, которая выводит количество продуктов"""
     assert category.get_quantity() == 13
+
+
+def test_middle_price(category, category_empty):
+    """Тестируем функцию, которая считает среднюю цену"""
+    assert category.middle_price() == 195000.0
+    assert category_empty.middle_price() == 0
+
+
+def test_add_category_capsys(capsys, category, product):
+    """Проверка функции на правильный вывод в консоль при обработке исключений"""
+    assert len(category.products_in_list) == 2
+    category.add_product(product)
+    massage = capsys.readouterr()
+    assert massage.out.strip().split("\n")[-2] == "Продукт добавлен"
+    assert massage.out.strip().split("\n")[-1] == "Операция выполнена"
