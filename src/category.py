@@ -1,7 +1,8 @@
+from src.base_product import BaseOrderCategory
 from src.product import Product
 
 
-class Category:
+class Category(BaseOrderCategory):
     """Класс для описания категории"""
 
     name: str
@@ -44,3 +45,25 @@ class Category:
     @property
     def products_in_list(self):
         return self.__products
+
+    def total_price(self):
+        """Функция считает общую стоимость продуктов"""
+        total_summ = 0
+        for product in self.__products:
+            total_summ += product.price * product.quantity
+        return total_summ
+
+    def get_quantity(self):
+        """Функция выводит количество продуктов"""
+        return sum([product.quantity for product in self.__products])
+
+
+# if __name__ == '__main__':
+#     product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
+#     product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
+#     category1 = Category("Смартфоны",
+#                          "Смартфоны, как средство не только коммуникации,
+#                          но и получения дополнительных функций для удобства жизни",
+#                          [product1, product2])
+#     print(category1.total_price())
+#     print(category1.get_quantity())
